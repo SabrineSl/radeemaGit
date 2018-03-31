@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ControleurViewDlg" widgetVar="ControleurViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewControleurTitle}">
+            <h:form id="ControleurViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{controleurController.selected != null}">
+                        <h:outputText value="#{bundle.ViewControleurLabel_utilisateur}"/>
+                        <h:outputText value="#{controleurController.selected.utilisateur}" title="#{bundle.ViewControleurTitle_utilisateur}"/>
+                        <h:outputText value="#{bundle.ViewControleurLabel_agence}"/>
+                        <h:outputText value="#{controleurController.selected.agence}" title="#{bundle.ViewControleurTitle_agence}"/>
+                        <h:outputText value="#{bundle.ViewControleurLabel_id}"/>
+                        <h:outputText value="#{controleurController.selected.id}" title="#{bundle.ViewControleurTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewControleurLabel_nom}"/>
+                        <h:outputText value="#{controleurController.selected.nom}" title="#{bundle.ViewControleurTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewControleurLabel_prenom}"/>
+                        <h:outputText value="#{controleurController.selected.prenom}" title="#{bundle.ViewControleurTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewControleurLabel_cin}"/>
+                        <h:outputText value="#{controleurController.selected.cin}" title="#{bundle.ViewControleurTitle_cin}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ControleurViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

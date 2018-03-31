@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacteurCreateDlg" widgetVar="FacteurCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFacteurTitle}">
+            <h:form id="FacteurCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facteurController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{facteurController.selected.nom}" title="#{bundle.CreateFacteurTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_utilisateur}" for="utilisateur" />
+                        <p:selectOneMenu id="utilisateur" value="#{facteurController.selected.utilisateur}" >
+                            <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"
+                                           var="utilisateurItem"
+                                           itemValue="#{utilisateurItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{facteurController.selected.prenom}" title="#{bundle.CreateFacteurTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{facteurController.selected.adresse}" title="#{bundle.CreateFacteurTitle_adresse}" />
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{facteurController.selected.cin}" title="#{bundle.CreateFacteurTitle_cin}" />
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{facteurController.selected.id}" title="#{bundle.CreateFacteurTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateFacteurLabel_agence}" for="agence" />
+                        <p:selectOneMenu id="agence" value="#{facteurController.selected.agence}" >
+                            <f:selectItems value="#{agenceController.itemsAvailableSelectOne}"
+                                           var="agenceItem"
+                                           itemValue="#{agenceItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facteurController.create}" value="#{bundle.Save}" update="display,:FacteurListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacteurCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacteurCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

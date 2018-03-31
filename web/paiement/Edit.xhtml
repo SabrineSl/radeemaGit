@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PaiementEditDlg" widgetVar="PaiementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPaiementTitle}">
+            <h:form id="PaiementEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{paiementController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_montantTHt}" for="montantTHt" />
+                        <p:inputText id="montantTHt" value="#{paiementController.selected.montantTHt}" title="#{bundle.EditPaiementTitle_montantTHt}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_montantTotalTva}" for="montantTotalTva" />
+                        <p:inputText id="montantTotalTva" value="#{paiementController.selected.montantTotalTva}" title="#{bundle.EditPaiementTitle_montantTotalTva}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_etat}" for="etat" />
+                        <p:inputText id="etat" value="#{paiementController.selected.etat}" title="#{bundle.EditPaiementTitle_etat}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_consommation}" for="consommation" />
+                        <p:selectOneMenu id="consommation" value="#{paiementController.selected.consommation}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{consommationController.itemsAvailableSelectOne}"
+                                           var="consommationItem"
+                                           itemValue="#{consommationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_trancheEau}" for="trancheEau" />
+                        <p:selectOneMenu id="trancheEau" value="#{paiementController.selected.trancheEau}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{trancheEauController.itemsAvailableSelectOne}"
+                                           var="trancheEauItem"
+                                           itemValue="#{trancheEauItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_trancheElectricite}" for="trancheElectricite" />
+                        <p:selectOneMenu id="trancheElectricite" value="#{paiementController.selected.trancheElectricite}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{trancheElectriciteController.itemsAvailableSelectOne}"
+                                           var="trancheElectriciteItem"
+                                           itemValue="#{trancheElectriciteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{paiementController.selected.client}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_montantHt}" for="montantHt" />
+                        <p:inputText id="montantHt" value="#{paiementController.selected.montantHt}" title="#{bundle.EditPaiementTitle_montantHt}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_montantTtc}" for="montantTtc" />
+                        <p:inputText id="montantTtc" value="#{paiementController.selected.montantTtc}" title="#{bundle.EditPaiementTitle_montantTtc}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_objet}" for="objet" />
+                        <p:inputText id="objet" value="#{paiementController.selected.objet}" title="#{bundle.EditPaiementTitle_objet}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{paiementController.selected.type}" title="#{bundle.EditPaiementTitle_type}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_factureEau}" for="factureEau" />
+                        <p:selectOneMenu id="factureEau" value="#{paiementController.selected.factureEau}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{factureEauController.itemsAvailableSelectOne}"
+                                           var="factureEauItem"
+                                           itemValue="#{factureEauItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_factureElectricite}" for="factureElectricite" />
+                        <p:selectOneMenu id="factureElectricite" value="#{paiementController.selected.factureElectricite}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{factureElectriciteController.itemsAvailableSelectOne}"
+                                           var="factureElectriciteItem"
+                                           itemValue="#{factureElectriciteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_datePaiement}" for="datePaiement" />
+                        <p:calendar id="datePaiement" pattern="MM/dd/yyyy" value="#{paiementController.selected.datePaiement}" title="#{bundle.EditPaiementTitle_datePaiement}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{paiementController.selected.id}" title="#{bundle.EditPaiementTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{paiementController.update}" value="#{bundle.Save}" update="display,:PaiementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PaiementEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PaiementEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConsommationCreateDlg" widgetVar="ConsommationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateConsommationTitle}">
+            <h:form id="ConsommationCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{consommationController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_difference}" for="difference" />
+                        <p:inputText id="difference" value="#{consommationController.selected.difference}" title="#{bundle.CreateConsommationTitle_difference}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_dateControl}" for="dateControl" />
+                        <p:calendar id="dateControl" pattern="MM/dd/yyyy" value="#{consommationController.selected.dateControl}" title="#{bundle.EditConsommationTitle_dateControl}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{consommationController.selected.id}" title="#{bundle.CreateConsommationTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_mois}" for="mois" />
+                        <p:inputText id="mois" value="#{consommationController.selected.mois}" title="#{bundle.CreateConsommationTitle_mois}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_annee}" for="annee" />
+                        <p:inputText id="annee" value="#{consommationController.selected.annee}" title="#{bundle.CreateConsommationTitle_annee}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_ancienIndex}" for="ancienIndex" />
+                        <p:inputText id="ancienIndex" value="#{consommationController.selected.ancienIndex}" title="#{bundle.CreateConsommationTitle_ancienIndex}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_nvIndex}" for="nvIndex" />
+                        <p:inputText id="nvIndex" value="#{consommationController.selected.nvIndex}" title="#{bundle.CreateConsommationTitle_nvIndex}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{consommationController.selected.type}" title="#{bundle.CreateConsommationTitle_type}" />
+                        <p:outputLabel value="#{bundle.CreateConsommationLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{consommationController.selected.client}" >
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{consommationController.create}" value="#{bundle.Save}" update="display,:ConsommationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ConsommationCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConsommationCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TrancheElectriciteItemCreateDlg" widgetVar="TrancheElectriciteItemCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTrancheElectriciteItemTitle}">
+            <h:form id="TrancheElectriciteItemCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{trancheElectriciteItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{trancheElectriciteItemController.selected.id}" title="#{bundle.CreateTrancheElectriciteItemTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_tarif}" for="tarif" />
+                        <p:inputText id="tarif" value="#{trancheElectriciteItemController.selected.tarif}" title="#{bundle.CreateTrancheElectriciteItemTitle_tarif}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_minT}" for="minT" />
+                        <p:inputText id="minT" value="#{trancheElectriciteItemController.selected.minT}" title="#{bundle.CreateTrancheElectriciteItemTitle_minT}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_maxT}" for="maxT" />
+                        <p:inputText id="maxT" value="#{trancheElectriciteItemController.selected.maxT}" title="#{bundle.CreateTrancheElectriciteItemTitle_maxT}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_tva}" for="tva" />
+                        <p:inputText id="tva" value="#{trancheElectriciteItemController.selected.tva}" title="#{bundle.CreateTrancheElectriciteItemTitle_tva}" />
+                        <p:outputLabel value="#{bundle.CreateTrancheElectriciteItemLabel_trancheElectricite}" for="trancheElectricite" />
+                        <p:selectOneMenu id="trancheElectricite" value="#{trancheElectriciteItemController.selected.trancheElectricite}" >
+                            <f:selectItems value="#{trancheElectriciteController.itemsAvailableSelectOne}"
+                                           var="trancheElectriciteItem"
+                                           itemValue="#{trancheElectriciteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{trancheElectriciteItemController.create}" value="#{bundle.Save}" update="display,:TrancheElectriciteItemListForm:datalist,:growl" oncomplete="handleSubmit(args,'TrancheElectriciteItemCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TrancheElectriciteItemCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

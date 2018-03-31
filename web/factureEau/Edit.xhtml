@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FactureEauEditDlg" widgetVar="FactureEauEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFactureEauTitle}">
+            <h:form id="FactureEauEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{factureEauController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_dateFacture}" for="dateFacture" />
+                        <p:calendar id="dateFacture" pattern="MM/dd/yyyy" value="#{factureEauController.selected.dateFacture}" title="#{bundle.EditFactureEauTitle_dateFacture}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_consommation}" for="consommation" />
+                        <p:selectOneMenu id="consommation" value="#{factureEauController.selected.consommation}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{consommationController.itemsAvailableSelectOne}"
+                                           var="consommationItem"
+                                           itemValue="#{consommationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_paiement}" for="paiement" />
+                        <p:selectOneMenu id="paiement" value="#{factureEauController.selected.paiement}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{paiementController.itemsAvailableSelectOne}"
+                                           var="paiementItem"
+                                           itemValue="#{paiementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_agence}" for="agence" />
+                        <p:selectOneMenu id="agence" value="#{factureEauController.selected.agence}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{agenceController.itemsAvailableSelectOne}"
+                                           var="agenceItem"
+                                           itemValue="#{agenceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{factureEauController.selected.client}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_configuration}" for="configuration" />
+                        <p:selectOneMenu id="configuration" value="#{factureEauController.selected.configuration}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{configurationController.itemsAvailableSelectOne}"
+                                           var="configurationItem"
+                                           itemValue="#{configurationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureEauLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{factureEauController.selected.id}" title="#{bundle.EditFactureEauTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{factureEauController.update}" value="#{bundle.Save}" update="display,:FactureEauListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FactureEauEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FactureEauEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

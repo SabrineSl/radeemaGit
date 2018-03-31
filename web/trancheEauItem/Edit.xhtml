@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TrancheEauItemEditDlg" widgetVar="TrancheEauItemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTrancheEauItemTitle}">
+            <h:form id="TrancheEauItemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{trancheEauItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{trancheEauItemController.selected.id}" title="#{bundle.EditTrancheEauItemTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_tarif}" for="tarif" />
+                        <p:inputText id="tarif" value="#{trancheEauItemController.selected.tarif}" title="#{bundle.EditTrancheEauItemTitle_tarif}" />
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_minTranche}" for="minTranche" />
+                        <p:inputText id="minTranche" value="#{trancheEauItemController.selected.minTranche}" title="#{bundle.EditTrancheEauItemTitle_minTranche}" />
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_maxTranche}" for="maxTranche" />
+                        <p:inputText id="maxTranche" value="#{trancheEauItemController.selected.maxTranche}" title="#{bundle.EditTrancheEauItemTitle_maxTranche}" />
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_tva}" for="tva" />
+                        <p:inputText id="tva" value="#{trancheEauItemController.selected.tva}" title="#{bundle.EditTrancheEauItemTitle_tva}" />
+                        <p:outputLabel value="#{bundle.EditTrancheEauItemLabel_trancheEau}" for="trancheEau" />
+                        <p:selectOneMenu id="trancheEau" value="#{trancheEauItemController.selected.trancheEau}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{trancheEauController.itemsAvailableSelectOne}"
+                                           var="trancheEauItem"
+                                           itemValue="#{trancheEauItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{trancheEauItemController.update}" value="#{bundle.Save}" update="display,:TrancheEauItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TrancheEauItemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TrancheEauItemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

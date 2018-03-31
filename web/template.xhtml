@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Admine" outcome="/admine/List.xhtml" />
+                            <p:menuitem value="Agence" outcome="/agence/List.xhtml" />
+                            <p:menuitem value="Avertissemnt" outcome="/avertissemnt/List.xhtml" />
+                            <p:menuitem value="Client" outcome="/client/List.xhtml" />
+                            <p:menuitem value="Configuration" outcome="/configuration/List.xhtml" />
+                            <p:menuitem value="Consommation" outcome="/consommation/List.xhtml" />
+                            <p:menuitem value="Controleur" outcome="/controleur/List.xhtml" />
+                            <p:menuitem value="Employe" outcome="/employe/List.xhtml" />
+                            <p:menuitem value="Facteur" outcome="/facteur/List.xhtml" />
+                            <p:menuitem value="FactureEau" outcome="/factureEau/List.xhtml" />
+                            <p:menuitem value="FactureElectricite" outcome="/factureElectricite/List.xhtml" />
+                            <p:menuitem value="Paiement" outcome="/paiement/List.xhtml" />
+                            <p:menuitem value="PaiementItem" outcome="/paiementItem/List.xhtml" />
+                            <p:menuitem value="Qartier" outcome="/qartier/List.xhtml" />
+                            <p:menuitem value="Reclamation" outcome="/reclamation/List.xhtml" />
+                            <p:menuitem value="Rue" outcome="/rue/List.xhtml" />
+                            <p:menuitem value="Secteur" outcome="/secteur/List.xhtml" />
+                            <p:menuitem value="TrancheEau" outcome="/trancheEau/List.xhtml" />
+                            <p:menuitem value="TrancheEauItem" outcome="/trancheEauItem/List.xhtml" />
+                            <p:menuitem value="TrancheElectricite" outcome="/trancheElectricite/List.xhtml" />
+                            <p:menuitem value="TrancheElectriciteItem" outcome="/trancheElectriciteItem/List.xhtml" />
+                            <p:menuitem value="Utilisateur" outcome="/utilisateur/List.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

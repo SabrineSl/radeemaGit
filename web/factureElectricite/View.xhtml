@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FactureElectriciteViewDlg" widgetVar="FactureElectriciteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFactureElectriciteTitle}">
+            <h:form id="FactureElectriciteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{factureElectriciteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_consommation}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.consommation}" title="#{bundle.ViewFactureElectriciteTitle_consommation}"/>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_paiement}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.paiement}" title="#{bundle.ViewFactureElectriciteTitle_paiement}"/>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_dateFacture}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.dateFacture}" title="#{bundle.ViewFactureElectriciteTitle_dateFacture}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_configuration}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.configuration}" title="#{bundle.ViewFactureElectriciteTitle_configuration}"/>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_client}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.client}" title="#{bundle.ViewFactureElectriciteTitle_client}"/>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_agence}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.agence}" title="#{bundle.ViewFactureElectriciteTitle_agence}"/>
+                        <h:outputText value="#{bundle.ViewFactureElectriciteLabel_id}"/>
+                        <h:outputText value="#{factureElectriciteController.selected.id}" title="#{bundle.ViewFactureElectriciteTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FactureElectriciteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

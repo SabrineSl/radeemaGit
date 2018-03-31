@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FactureEauViewDlg" widgetVar="FactureEauViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFactureEauTitle}">
+            <h:form id="FactureEauViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{factureEauController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_dateFacture}"/>
+                        <h:outputText value="#{factureEauController.selected.dateFacture}" title="#{bundle.ViewFactureEauTitle_dateFacture}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_consommation}"/>
+                        <h:outputText value="#{factureEauController.selected.consommation}" title="#{bundle.ViewFactureEauTitle_consommation}"/>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_paiement}"/>
+                        <h:outputText value="#{factureEauController.selected.paiement}" title="#{bundle.ViewFactureEauTitle_paiement}"/>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_agence}"/>
+                        <h:outputText value="#{factureEauController.selected.agence}" title="#{bundle.ViewFactureEauTitle_agence}"/>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_client}"/>
+                        <h:outputText value="#{factureEauController.selected.client}" title="#{bundle.ViewFactureEauTitle_client}"/>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_configuration}"/>
+                        <h:outputText value="#{factureEauController.selected.configuration}" title="#{bundle.ViewFactureEauTitle_configuration}"/>
+                        <h:outputText value="#{bundle.ViewFactureEauLabel_id}"/>
+                        <h:outputText value="#{factureEauController.selected.id}" title="#{bundle.ViewFactureEauTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FactureEauViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

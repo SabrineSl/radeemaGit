@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FactureEauCreateDlg" widgetVar="FactureEauCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFactureEauTitle}">
+            <h:form id="FactureEauCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{factureEauController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_dateFacture}" for="dateFacture" />
+                        <p:calendar id="dateFacture" pattern="MM/dd/yyyy" value="#{factureEauController.selected.dateFacture}" title="#{bundle.EditFactureEauTitle_dateFacture}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_consommation}" for="consommation" />
+                        <p:selectOneMenu id="consommation" value="#{factureEauController.selected.consommation}" >
+                            <f:selectItems value="#{consommationController.itemsAvailableSelectOne}"
+                                           var="consommationItem"
+                                           itemValue="#{consommationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_paiement}" for="paiement" />
+                        <p:selectOneMenu id="paiement" value="#{factureEauController.selected.paiement}" >
+                            <f:selectItems value="#{paiementController.itemsAvailableSelectOne}"
+                                           var="paiementItem"
+                                           itemValue="#{paiementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_agence}" for="agence" />
+                        <p:selectOneMenu id="agence" value="#{factureEauController.selected.agence}" >
+                            <f:selectItems value="#{agenceController.itemsAvailableSelectOne}"
+                                           var="agenceItem"
+                                           itemValue="#{agenceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{factureEauController.selected.client}" >
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_configuration}" for="configuration" />
+                        <p:selectOneMenu id="configuration" value="#{factureEauController.selected.configuration}" >
+                            <f:selectItems value="#{configurationController.itemsAvailableSelectOne}"
+                                           var="configurationItem"
+                                           itemValue="#{configurationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFactureEauLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{factureEauController.selected.id}" title="#{bundle.CreateFactureEauTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{factureEauController.create}" value="#{bundle.Save}" update="display,:FactureEauListForm:datalist,:growl" oncomplete="handleSubmit(args,'FactureEauCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FactureEauCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

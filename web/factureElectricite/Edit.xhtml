@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FactureElectriciteEditDlg" widgetVar="FactureElectriciteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFactureElectriciteTitle}">
+            <h:form id="FactureElectriciteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{factureElectriciteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_consommation}" for="consommation" />
+                        <p:selectOneMenu id="consommation" value="#{factureElectriciteController.selected.consommation}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{consommationController.itemsAvailableSelectOne}"
+                                           var="consommationItem"
+                                           itemValue="#{consommationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_paiement}" for="paiement" />
+                        <p:selectOneMenu id="paiement" value="#{factureElectriciteController.selected.paiement}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{paiementController.itemsAvailableSelectOne}"
+                                           var="paiementItem"
+                                           itemValue="#{paiementItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_dateFacture}" for="dateFacture" />
+                        <p:calendar id="dateFacture" pattern="MM/dd/yyyy" value="#{factureElectriciteController.selected.dateFacture}" title="#{bundle.EditFactureElectriciteTitle_dateFacture}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_configuration}" for="configuration" />
+                        <p:selectOneMenu id="configuration" value="#{factureElectriciteController.selected.configuration}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{configurationController.itemsAvailableSelectOne}"
+                                           var="configurationItem"
+                                           itemValue="#{configurationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_client}" for="client" />
+                        <p:selectOneMenu id="client" value="#{factureElectriciteController.selected.client}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientItem"
+                                           itemValue="#{clientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_agence}" for="agence" />
+                        <p:selectOneMenu id="agence" value="#{factureElectriciteController.selected.agence}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{agenceController.itemsAvailableSelectOne}"
+                                           var="agenceItem"
+                                           itemValue="#{agenceItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFactureElectriciteLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{factureElectriciteController.selected.id}" title="#{bundle.EditFactureElectriciteTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{factureElectriciteController.update}" value="#{bundle.Save}" update="display,:FactureElectriciteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FactureElectriciteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FactureElectriciteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
