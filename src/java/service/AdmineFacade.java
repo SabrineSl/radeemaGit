@@ -22,6 +22,9 @@ public class AdmineFacade extends AbstractFacade<Admine> {
     public void test(){
         System.out.println("sabrine");
     }
+    public void test2(){
+        System.out.println("myriam");
+    }
 
     @Override
     protected EntityManager getEntityManager() {
