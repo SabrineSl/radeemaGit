@@ -28,5 +28,8 @@ public class PaiementFacade extends AbstractFacade<Paiement> {
     public PaiementFacade() {
         super(Paiement.class);
     }
+  public void test(){
+      System.out.println("cc sabrine ");
+}
     
 }
