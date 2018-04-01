@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <h:head>
+        <title>Tranche</title>
+    </h:head>
+    <h:body>
+      
+    </h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create TrancheEau"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Date:" for="date" />
+                    <p:calendar id="date" pattern="MM/dd/yyyy" value="#{trancheEauController.selected.date}" showOn="button"/>
+                    <p:outputLabel value="Id:" for="id" />
+                    <p:inputText id="id" value="#{trancheEauController.selected.id}" title="Id" />
+                    <p:commandButton  actionListener="#{trancheEauController.ajoutList()}" value="ok" update="id_tab" />
+                </p:panelGrid>
+            
+                  <h1><h:outputText value="List Tranche Eau"/></h1>
+                  <p:dataTable value="#{trancheEauController.tr}" var="item" id="id_tab">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Date"/>
+                                </f:facet>
+                                <h:outputText value="#{item.date}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Action"/>
+                                </f:facet>
+                                <p:commandLink value="Remove" />
+                            </p:column>
+                        </p:dataTable>
+                  <h:commandButton action="#{trancheEauController.ajoutdb()}" value="save"/>
+           
+                    <h1><h:outputText value="Create TrancheItems"/></h1>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Id:" for="idtr" />
+                        <p:inputText id="idtr" value="#{trancheEauItemController.selected.id}" title="Id" />
+                        <p:outputLabel value="TrancheEau:" for="trancheEau" />
+                        <p:selectOneMenu id="trancheEau" value="#{trancheEauItemController.selected.trancheEau}" >
+                             <f:selectItem itemValue="#{null}" itemLabel="Select tranche"/>
+                            <f:selectItems value="#{trancheEauController.itemsAvailableSelectOne}"
+                                           var="trancheEauItem"
+                                           itemValue="#{trancheEauItem}"/>
+                           
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Mintranche:" for="mintranche" />
+                        <p:inputText id="mintranche" value="#{trancheEauItemController.selected.mintranche}" title="Mintranche" />
+                        <p:outputLabel value="Maxtranche:" for="maxtranche" />
+                        <p:inputText id="maxtranche" value="#{trancheEauItemController.selected.maxtranche}" title="Maxtranche" />
+                        <p:outputLabel value="Prix:" for="prix" />
+                        <p:inputText id="prix" value="#{trancheEauItemController.selected.prix}" title="Prix" />
+                        <p:outputLabel value="Tva:" for="tva" />
+                        <p:inputText id="tva" value="#{trancheEauItemController.selected.tva}" title="Tva" />
+                        <p:commandButton actionListener="#{trancheEauItemController.ajoutList()}" value="ok" update="tab"/>
+                        
+                    </p:panelGrid>
+
+            
+                    
+                        <h1><h:outputText value="List TrancheItems"/></h1>
+                        <p:dataTable value="#{trancheEauItemController.trI}" var="item" id="tab">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="TrancheEau"/>
+                                </f:facet>
+                                <h:outputText value="#{item.trancheEau}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Mintranche"/>
+                                </f:facet>
+                                <h:outputText value="#{item.mintranche}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Maxtranche"/>
+                                </f:facet>
+                                <h:outputText value="#{item.maxtranche}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prix"/>
+                                </f:facet>
+                                <h:outputText value="#{item.prix}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tva"/>
+                                </f:facet>
+                                <h:outputText value="#{item.tva}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="save"/>
+      
+            </h:form>
+        </f:view>
+
+    
+</html>

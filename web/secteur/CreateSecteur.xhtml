@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Secteur</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1><h:outputText value="Create secteur"/></h1>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Id:" for="id" />
+                <p:inputText id="id" value="#{secteurController.selected.id}" title="Id" />
+                <p:outputLabel value="Nom:" for="nom" />
+                <p:inputText id="nom" value="#{secteurController.selected.nom}" title="Nom" />
+                <p:commandButton action="#{secteurController.ajoutList()}" value="save" update="id_tab"></p:commandButton> 
+            </p:panelGrid>
+
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <p:dataTable value="#{secteurController.sec}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+            <h:commandButton action="#{secteurController.ajoutdatabase()}" value="ajouter"/>
+        </h:form>
+    </h:body>
+
+
+</html>
+

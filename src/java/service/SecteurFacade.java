@@ -20,6 +20,20 @@ public class SecteurFacade extends AbstractFacade<Secteur> {
     @PersistenceContext(unitName = "radeemaGitPU")
     private EntityManager em;
 
+    public int createSecteur(Long id, String nom) {
+        Secteur secteur = new Secteur();
+        secteur.setId(id);
+        secteur.setNom(nom);
+        return 1;
+    }
+
+    public Secteur Clone(Secteur secteur) {
+        Secteur secteurClone = new Secteur();
+        secteurClone.setId(secteur.getId());
+        secteurClone.setNom(secteur.getNom());
+        return secteurClone;
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -28,5 +42,5 @@ public class SecteurFacade extends AbstractFacade<Secteur> {
     public SecteurFacade() {
         super(Secteur.class);
     }
-    
+
 }

@@ -6,6 +6,7 @@ import controller.util.JsfUtil.PersistAction;
 import service.SecteurFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,11 +28,57 @@ public class SecteurController implements Serializable {
     private service.SecteurFacade ejbFacade;
     private List<Secteur> items = null;
     private Secteur selected;
+    private List<Secteur> secteurs = new ArrayList<>();
+    private List<Secteur> sec = new ArrayList<>();
+    
+    
+
+    public void ajoutList() {
+        Secteur cloneSecteur = ejbFacade.Clone(selected);
+        sec.add(cloneSecteur);
+        setSelected(null);
+
+    }
+
+    public void ajoutdatabase() {
+        for (int i = 0; i < secteurs.size(); i++) {
+            Secteur secteur = secteurs.get(i);
+            ejbFacade.createSecteur(secteur.getId(), secteur.getNom());
+
+        }
+    }
 
     public SecteurController() {
     }
 
+    public SecteurFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(SecteurFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public List<Secteur> getSec() {
+        return sec;
+    }
+
+    public void setSec(List<Secteur> sec) {
+        this.sec = sec;
+    }
+
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
+    }
+
     public Secteur getSelected() {
+        if(selected==null){
+            selected=new Secteur();
+        }
         return selected;
     }
 
