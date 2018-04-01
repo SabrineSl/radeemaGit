@@ -32,4 +32,9 @@ public class AdmineFacade extends AbstractFacade<Admine> {
         super(Admine.class);
     }
     
+    public int somme(int a, int b){
+        //zaineb
+        return a+b;
+    }
+    
 }
